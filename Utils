@@ -254,4 +254,23 @@ public static class Utils
             tel = tel.Replace(" ", "");
             return tel;
         }
+        
+        /// <summary>
+        /// Devexpress insert,update,delete eventlerinde e.NewValues["TCKN"] objectlerini kontrol etmek için kullanılır.
+        /// </summary>
+        /// <param name="list">e.NewValues["BirimAdi"], e.NewValues["Aciklama"], e.NewValues["Durum"]</param>
+        /// <returns>bool</returns>
+        public static bool CheckPropertiesValueForNullOrWhiteSpace(params object[] list)
+        {
+            bool result = true;
+
+            for (int i = 0; i < list.Length; i++)
+            {
+                string currentProperties = Convert.ToString(list[i]);
+                if (string.IsNullOrWhiteSpace(currentProperties))
+                    result = false;
+            }
+
+            return result;
+        }
     }
